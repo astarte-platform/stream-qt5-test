@@ -1,0 +1,13 @@
+{
+   "interface_name": "org.astarteplatform.Values",
+   "version_major": 0,
+   "version_minor": 1,
+   "type": "datastream",
+   "quality": "producer",
+   "mappings": [
+       {
+           "path": "/realValue",
+           "type": "double"
+       }
+    ]
+}
