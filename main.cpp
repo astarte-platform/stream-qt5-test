@@ -84,8 +84,9 @@ int main(int argc, char *argv[])
     QString function = parser.value(QStringLiteral("function"));
     QString deviceId = parser.value(QStringLiteral("device"));
 
-    if (deviceId.count() != 22) {
-        qWarning() << deviceId << " doesn't seem to be a valid device!";
+    QByteArray decodedDeviceId = QByteArray::fromBase64(deviceId.toLatin1(), QByteArray::Base64UrlEncoding);
+    if (decodedDeviceId.count() != 16) {
+        qWarning() << deviceId << " doesn't seem to be a valid device ID! Make sure to use an URL encoded base64 128 bits ID.";
         return EXIT_FAILURE;
     }
 
