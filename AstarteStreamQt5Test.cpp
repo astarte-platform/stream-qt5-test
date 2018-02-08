@@ -26,6 +26,7 @@
 #include <QtCore/QDir>
 #include <QtCore/QTimer>
 
+#include <climits>
 #include <math.h>
 
 AstarteStreamQt5Test::AstarteStreamQt5Test(const QByteArray &interface, const QByteArray &path, const QString &function, const QString &device, int interval, double scale, QObject *parent)
@@ -33,13 +34,19 @@ AstarteStreamQt5Test::AstarteStreamQt5Test(const QByteArray &interface, const QB
     , m_interface(interface)
     , m_path(path)
     , m_function(function)
-    , m_uptimeTimer(new QTimer(this))
+    , m_updateTimer(new QTimer(this))
     , m_scale(scale)
     , m_xValue(0)
     , m_ready(false)
 {
-    m_uptimeTimer->setInterval(interval);
-    connect(m_uptimeTimer, &QTimer::timeout, this, &AstarteStreamQt5Test::sendValues);
+    if (interval >= 0) {
+        m_updateTimer->setInterval(interval);
+    } else {
+        qsrand(QDateTime::currentMSecsSinceEpoch() % UINT_MAX);
+        m_updateTimer->setInterval(randomInterval());
+        m_updateTimer->setSingleShot(true);
+    }
+    connect(m_updateTimer, &QTimer::timeout, this, &AstarteStreamQt5Test::sendValues);
 
     m_sdk = new AstarteDeviceSDK(QDir::currentPath() + QStringLiteral("/astarte-device-%1-conf/transport-astarte.conf").arg(device), QDir::currentPath() + QStringLiteral("/interfaces"), device.toLatin1());
     connect(m_sdk->init(), &Hemera::Operation::finished, this, &AstarteStreamQt5Test::checkInitResult);
@@ -57,7 +64,7 @@ void AstarteStreamQt5Test::checkInitResult(Hemera::Operation *op)
 
     } else {
         m_ready = true;
-        m_uptimeTimer->start();
+        m_updateTimer->start();
     }
 }
 
@@ -90,10 +97,21 @@ void AstarteStreamQt5Test::sendValues()
     qDebug() << x << ": " << QString::number(value, 'f', 5);
 
     m_sdk->sendData(m_interface, m_path, value);
-    m_xValue += M_PI * 2 * ((double) m_uptimeTimer->interval()) * m_scale;
+
+    if (m_updateTimer->isSingleShot()) {
+        m_updateTimer->setInterval(randomInterval());
+        m_updateTimer->start();
+    }
+
+    m_xValue += M_PI * 2 * ((double) m_updateTimer->interval()) * m_scale;
 }
 
 void AstarteStreamQt5Test::handleIncomingData(const QByteArray &interface, const QByteArray &path, const QVariant &value)
 {
     qDebug() << "Received data, interface: " << interface << "path: " << path << ", value: " << value << ", Qt type name: " << value.typeName();
+}
+
+int AstarteStreamQt5Test::randomInterval()
+{
+    return (qrand() % 600) * 1000 + (qrand() % 1000);
 }
