@@ -48,10 +48,12 @@ private:
     QByteArray m_interface;
     QByteArray m_path;
     QString m_function;
-    QTimer *m_uptimeTimer;
+    QTimer *m_updateTimer;
     double m_scale;
     double m_xValue;
     bool m_ready;
+
+    static int randomInterval();
 };
 
 #endif

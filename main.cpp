@@ -90,10 +90,15 @@ int main(int argc, char *argv[])
         return EXIT_FAILURE;
     }
 
-    int interval = parser.value(QStringLiteral("interval")).toInt(&ok);
-    if (!ok) {
-        qWarning() << "Invalid interval.";
-        return EXIT_FAILURE;
+    int interval;
+    if (parser.value(QStringLiteral("interval")) == QStringLiteral("random")) {
+        interval = -1;
+    } else {
+        interval = parser.value(QStringLiteral("interval")).toInt(&ok);
+        if (!ok) {
+            qWarning() << "Invalid interval.";
+            return EXIT_FAILURE;
+        }
     }
     double scale = parser.value(QStringLiteral("scale")).toDouble(&ok);
     if (!ok) {
