@@ -1,0 +1,43 @@
+variables:
+    PROJECT_NAME: "astarte-device-sdk-qt5"
+
+stages:
+    - build
+
+before_script:
+    - apt-get -y update
+    - apt-get -y install openssh-client git
+    # Run ssh-agent (inside the build environment)
+    - eval $(ssh-agent -s)
+
+    # Add the SSH key stored in SSH_PRIVATE_KEY variable to the agent store
+    - ssh-add <(echo "$SSH_PRIVATE_KEY")
+
+    # For Docker builds disable host key checking. Be aware that by adding that
+    # you are suspectible to man-in-the-middle attacks.
+    # WARNING: Use this only with the Docker executor, if you use it with shell
+    # you will overwrite your user's SSH config.
+    - mkdir -p ~/.ssh
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+
+next:build:
+    image: ubuntu:16.04
+    stage: build
+    script:
+        # Install additional packages
+        - apt-get -y update
+        - apt-get -y install cmake openssl libssl-dev libmosquittopp-dev qtbase5-dev qt5-default gcc g++
+        # Build Astarte device SDK Qt5
+        - git clone git@git.ispirata.com:Astarte-NG/astarte-device-sdk-qt5.git
+        - cd astarte-device-sdk-qt5
+        - mkdir build
+        - cd build
+        - cmake -DENABLE_WERROR=ON -DCMAKE_INSTALL_PREFIX=/usr ..
+        - make -j6
+        - make install
+        - cd ../..
+        # Build Astarte Stream Qt5 test
+        - mkdir build
+        - cd build
+        - qmake ..
+        - make -j6
