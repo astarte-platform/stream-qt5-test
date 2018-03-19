@@ -96,7 +96,7 @@ void AstarteStreamQt5Test::sendValues()
 
     qDebug() << x << ": " << QString::number(value, 'f', 5);
 
-    m_sdk->sendData(m_interface, m_path, value);
+    m_sdk->sendData(m_interface, m_path, value, QDateTime::currentDateTime());
 
     if (m_updateTimer->isSingleShot()) {
         m_updateTimer->setInterval(randomInterval());
