@@ -3,10 +3,10 @@
    "version_major": 0,
    "version_minor": 1,
    "type": "datastream",
-   "quality": "producer",
+   "ownership": "device",
    "mappings": [
        {
-           "path": "/realValue",
+           "endpoint": "/realValue",
            "type": "double"
        }
     ]
