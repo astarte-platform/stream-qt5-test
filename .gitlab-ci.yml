@@ -28,7 +28,7 @@ next:build:
         - apt-get -y update
         - apt-get -y install cmake openssl libssl-dev libmosquittopp-dev qtbase5-dev qt5-default gcc g++
         # Build Astarte device SDK Qt5
-        - git clone git@git.ispirata.com:Astarte-NG/astarte-device-sdk-qt5.git
+        - git clone --branch=release-0.10 https://github.com/astarte-platform/astarte-device-sdk-qt5.git
         - cd astarte-device-sdk-qt5
         - mkdir build
         - cd build
