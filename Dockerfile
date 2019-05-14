@@ -16,7 +16,7 @@ RUN git clone https://github.com/astarte-platform/astarte-device-sdk-qt5.git && 
 	cd -
 
 # Install Astarte Qt5 Stream Test
-RUN git clone https://github.com/astarte-platform/stream-qt5-test.git && \
+RUN git clone --branch=v0.10.0 https://github.com/astarte-platform/stream-qt5-test.git && \
 	cd stream-qt5-test && \
 	qmake . && \
 	make && \
