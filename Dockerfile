@@ -16,11 +16,8 @@ RUN git clone --branch=v0.10.0 https://github.com/astarte-platform/astarte-devic
 	cd -
 
 # Install Astarte Qt5 Stream Test
-RUN git clone --branch=v0.10.0 https://github.com/astarte-platform/stream-qt5-test.git && \
-	cd stream-qt5-test && \
-	qmake . && \
-	make && \
-	cd -
+ADD . .
+RUN qmake . && make
 
 FROM debian:stable-slim
 
@@ -31,7 +28,7 @@ RUN apt-get update && apt-get -qq install libmosquittopp1 libqt5network5 libqt5s
 COPY --from=builder /usr/lib/libAstarteDeviceSDKQt5.so.0* /usr/lib/
 COPY --from=builder /usr/bin/astarte-validate-interface /usr/bin/
 COPY --from=builder /usr/share/hyperdrive /usr/share/hyperdrive
-COPY --from=builder /build/stream-qt5-test/stream-qt5-test /usr/bin/
+COPY --from=builder /build/stream-qt5-test /usr/bin/
 
 # Add Interfaces
 COPY interfaces /interfaces/
