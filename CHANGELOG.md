@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Changed
+- Use org.astarte-platform.genericsensors.Values interface (and remove org.astarteplatform.Values).
 
 ## [0.10.2] - 2020-02-14
 ### Changed
