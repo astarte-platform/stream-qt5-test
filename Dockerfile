@@ -1,4 +1,4 @@
-FROM debian:stretch as builder
+FROM debian:buster as builder
 
 # Let's install dependencies
 RUN apt-get update && apt-get -qq install qt5-default qtbase5-dev libqt5sql5-sqlite libssl-dev libmosquittopp-dev cmake git build-essential
