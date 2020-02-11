@@ -19,7 +19,7 @@ RUN git clone --branch=v0.10.1 https://github.com/astarte-platform/astarte-devic
 ADD . .
 RUN qmake . && make
 
-FROM debian:stable-slim
+FROM debian:buster-slim
 
 # Install required dependencies
 RUN apt-get update && apt-get -qq install libmosquittopp1 libqt5network5 libqt5sql5-sqlite libssl1.1 ca-certificates
