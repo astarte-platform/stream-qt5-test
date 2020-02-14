@@ -1,4 +1,4 @@
-FROM debian:stretch as builder
+FROM debian:buster as builder
 
 # Let's install dependencies
 RUN apt-get update && apt-get -qq install qt5-default qtbase5-dev libqt5sql5-sqlite libssl-dev libmosquittopp-dev cmake git build-essential
@@ -19,7 +19,7 @@ RUN git clone https://github.com/astarte-platform/astarte-device-sdk-qt5.git && 
 ADD . .
 RUN qmake . && make
 
-FROM debian:stable-slim
+FROM debian:buster-slim
 
 # Install required dependencies
 RUN apt-get update && apt-get -qq install libmosquittopp1 libqt5network5 libqt5sql5-sqlite libssl1.1 ca-certificates
