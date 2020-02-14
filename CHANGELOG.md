@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.10.2] - 2020-02-14
+### Changed
+- Use Debian Buster as base image
+
 ## [0.10.1] - 2019-10-02
 
 ## [0.10.0] - 2019-04-17
