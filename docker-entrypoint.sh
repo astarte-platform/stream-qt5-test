@@ -10,6 +10,7 @@ agentKey=$AGENT_KEY
 endpoint=$PAIRING_HOST/v1/$REALM
 persistencyDir=$PERSISTENCY_DIR
 ignoreSslErrors=$IGNORE_SSL_ERRORS
+keepAliveSeconds=$KEEPALIVE
 EOF
 
 exec "$@"

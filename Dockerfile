@@ -38,7 +38,7 @@ COPY docker-entrypoint.sh /usr/local/bin/
 
 WORKDIR /
 
-ENV FUNCTION=random INTERVAL=1000 SCALE=0.0001 ASTARTE_INTERFACE=org.astarte-platform.genericsensors.Values ASTARTE_INTERFACE_PATH=/streamTest/value PERSISTENCY_DIR=/persistency PAIRING_HOST=http://localhost:4003 REALM=test IGNORE_SSL_ERRORS=false
+ENV FUNCTION=random INTERVAL=1000 SCALE=0.0001 ASTARTE_INTERFACE=org.astarte-platform.genericsensors.Values ASTARTE_INTERFACE_PATH=/streamTest/value PERSISTENCY_DIR=/persistency PAIRING_HOST=http://localhost:4003 REALM=test IGNORE_SSL_ERRORS=false KEEPALIVE=60
 
 ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
 

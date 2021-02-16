@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Bump interface org.astarte-platform.genericsensors.Values version to 1.0.
 
+### Added
+- Allow setting the MQTT keepalive.
+
 ## [0.11.4] - 2021-01-27
 
 ## [0.11.3] - 2020-09-24
