@@ -8,6 +8,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Bump interface org.astarte-platform.genericsensors.Values version to 1.0.
 
+## [0.11.4] - 2021-01-27
+
+## [0.11.3] - 2020-09-24
+
+## [0.11.2] - 2020-08-14
+
 ## [0.11.1] - 2020-05-18
 
 ## [0.11.0] - 2020-04-13
