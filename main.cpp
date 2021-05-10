@@ -60,19 +60,19 @@ int main(int argc, char *argv[])
             QStringList{QStringLiteral("i"), QStringLiteral("interval")},
             QObject::tr("Interval in ms between two samples."),
             QStringLiteral("interval"),
-            QStringLiteral("100")
+            QStringLiteral("1000")
         },
         {
             QStringList{QStringLiteral("n"), QStringLiteral("interface")},
             QObject::tr("Target interface"),
             QStringLiteral("interface"),
-            QStringLiteral("org.astarteplatform.Values")
+            QStringLiteral("org.astarte-platform.genericsensors.Values")
         },
         {
             QStringList{QStringLiteral("p"), QStringLiteral("path")},
             QObject::tr("Target path."),
             QStringLiteral("path"),
-            QStringLiteral("/realValue")
+            QStringLiteral("/streamTest/value")
         }
     });
 
