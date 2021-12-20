@@ -6,7 +6,7 @@ RUN apt-get update && apt-get -qq install qt5-default qtbase5-dev libqt5sql5-sql
 WORKDIR /build
 
 # Install Astarte Qt5 SDK
-RUN git clone https://github.com/astarte-platform/astarte-device-sdk-qt5.git -b v1.0.0 && \
+RUN git clone https://github.com/astarte-platform/astarte-device-sdk-qt5.git -b v1.0.1 && \
 	cd astarte-device-sdk-qt5 && \
 	mkdir build && \
 	cd build && \
