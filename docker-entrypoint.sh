@@ -3,14 +3,14 @@
 set -e
 
 # Support old JWT naming, print warning
-if [[ -v $AGENT_KEY && ! -v $PAIRING_JWT ]]; then
+if [[ -v AGENT_KEY && ! -v PAIRING_JWT ]]; then
     echo "AGENT_KEY is deprecated and will be removed in a future release."
     echo "Start using PAIRING_JWT instead."
     PAIRING_JWT=$AGENT_KEY
 fi
 
 # Support old PAIRING_HOST, print warning
-if [[ -v $PAIRING_HOST && ! -v $PAIRING_URL ]]; then
+if [[ -v PAIRING_HOST && ! -v PAIRING_URL ]]; then
     echo "PAIRING_HOST is deprecated and will be removed in a future release."
     echo "Start using PAIRING_URL instead."
     PAIRING_URL=$PAIRING_HOST
