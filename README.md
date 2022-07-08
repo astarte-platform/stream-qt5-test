@@ -62,17 +62,17 @@ Make sure to have [astartectl](https://github.com/astarte-platform/astartectl#in
 
 Pull the image with:
 ```
-docker pull astarte/astarte-stream-qt5-test:1.0.2
+docker pull astarte/astarte-stream-qt5-test:1.0.3
 ```
 
 If you are running the container on a different machine than your Astarte instance, you can invoke the application with:
 ```
-docker run -e "DEVICE_ID=$(astartectl utils device-id generate-random)" -e "PAIRING_URL=<your pairing url>" -e "REALM=<realm name>" -e "PAIRING_JWT=$(astartectl utils gen-jwt pairing -k <realm private key>)" -e astarte/astarte-stream-qt5-test:1.0.2
+docker run -e "DEVICE_ID=$(astartectl utils device-id generate-random)" -e "PAIRING_URL=<your pairing url>" -e "REALM=<realm name>" -e "PAIRING_JWT=$(astartectl utils gen-jwt pairing -k <realm private key>)" -e astarte/astarte-stream-qt5-test:1.0.3
 ```
 
 Otherwise, to make `localhost` work, you need to specify an additional docker option:
 ```
-docker run --net="host" -e "DEVICE_ID=$(astartectl utils device-id generate-random)" -e "PAIRING_URL=http://localhost:4003" -e "REALM=<realm name>" -e "PAIRING_JWT=$(astartectl utils gen-jwt pairing -k <realm private key>)" -e astarte/astarte-stream-qt5-test:1.0.2
+docker run --net="host" -e "DEVICE_ID=$(astartectl utils device-id generate-random)" -e "PAIRING_URL=http://localhost:4003" -e "REALM=<realm name>" -e "PAIRING_JWT=$(astartectl utils gen-jwt pairing -k <realm private key>)" -e astarte/astarte-stream-qt5-test:1.0.3
 ```
 Both commands will generate a random datastream from a brand new, random Device ID.
 
