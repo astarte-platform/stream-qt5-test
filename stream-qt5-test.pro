@@ -10,6 +10,6 @@ LIBS += -lmosquitto
 LIBS += -lmosquittopp
 LIBS += -lAstarteDeviceSDKQt5
 
-HEADERS += AstarteStreamQt5Test.h
+HEADERS += AstarteStreamQt5Test.h AstarteStreamTelemetry.h
 
-SOURCES += main.cpp AstarteStreamQt5Test.cpp
+SOURCES += main.cpp AstarteStreamQt5Test.cpp AstarteStreamTelemetry.cpp

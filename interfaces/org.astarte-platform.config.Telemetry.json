@@ -1,0 +1,24 @@
+{
+    "interface_name": "org.astarte-platform.config.Telemetry",
+    "version_major": 0,
+    "version_minor": 1,
+    "type": "properties",
+    "ownership": "server",
+    "mappings": [
+        {
+            "endpoint": "/request/%{function_name}/enable",
+            "type": "boolean",
+            "description": "Enable/Disable telemetry update."
+        },
+        {
+            "endpoint": "/request/%{function_name}/periodMS",
+            "type": "integer",
+            "description": "Set interval of period milliseconds between the end of the previous update and the start of the next one."
+        },
+        {
+            "endpoint": "/request/%{function_name}/scale",
+            "type": "double",
+            "description": "Set scale factor of function."
+        }
+    ]
+}
