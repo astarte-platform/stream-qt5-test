@@ -33,6 +33,8 @@ astartectl utils gen-jwt pairing -k <realm_private_key>
 - `realm`: the name of the Astarte realm.
 - `persistencyDir`: When using Docker, allows to save the container's persistency through a Docker Volume.
 
+## Installing the interfaces
+The Stream-qt5-test contains an /interfaces folder, before running it install all the interfaces contained in the .json files in that folder.
 
 ## Build and run
 
