@@ -54,6 +54,40 @@ Several options are available:
 - `--interface` allows to specify the Astarte interface installed on the device;
 - `--path` allows to specify the mapping endpoint for the interface.
 
+## Configuring the streaming simulator via Astarte Interface
+
+Configuring the streaming options [`function`, `interval`, `scale`] can be accomplished by sending some data from Astarte to the device via `org.astarte-platform.config.Telemetry` interface. This can be done using the Astarte AppEngine API or with astartectl command.
+### `Sin` example:
+
+- Enable the `sin` data generation function, with default period 
+``` shell
+astartectl appengine --appengine-url https://<api url>/appengine    \
+ --token $APPENGINE_TOKEN --realm-name $REALM_NAME                  \ 
+ devices send-data $DEVICE_ID                                       \
+ org.astarte-platform.config.Telemetry                           \
+ --interface-type properties --payload-type boolean                 \
+ /request/sin/enable true  
+```
+
+- Change the `sin` sending interval to 1000ms
+``` shell
+astartectl appengine --appengine-url https://<api url>/appengine    \
+ --token $APPENGINE_TOKEN --realm-name $REALM_NAME                  \ 
+ devices send-data $DEVICE_ID                                       \
+ org.astarte-platform.config.Telemetry                           \
+ --interface-type properties --payload-type integer                 \
+ /request/sin/periodMS 1000  
+```
+
+- Change the `sin` scale to 0.0001
+``` shell
+astartectl appengine --appengine-url https://<api url>/appengine    \
+ --token $APPENGINE_TOKEN --realm-name $REALM_NAME                  \ 
+ devices send-data $DEVICE_ID                                       \
+ org.astarte-platform.config.Telemetry                           \
+ --interface-type properties --payload-type double                 \
+ /request/sin/scale 0.0001
+```
 
 Using the Docker image
 ====
